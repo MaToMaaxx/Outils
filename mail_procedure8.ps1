@@ -21,8 +21,9 @@ $PieceJointe = "C:\Temp\Procedure8.pdf"
 if (Test-Path $PieceJointe) {
     $Mail.Attachments.Add($PieceJointe)
 } else {
-    Write-Host "La pièce jointe n'a pas été trouvée : $PieceJointe" -ForegroundColor Red
-    exit
+    Write-Host "Téléchargement de la pièce jointe" -ForegroundColor Red
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/MaToMaaxx/Outils/main/Transfert_De_Contacts_Android_IOS.pdf" -OutFile $PieceJointe
+    $Mail.Attachments.Add($PieceJointe)
 }
 
 # Envoi du mail
